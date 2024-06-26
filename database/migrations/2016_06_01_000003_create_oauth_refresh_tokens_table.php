@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attribute_image_products', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
-            $table->foreignId('attribute_product_id')->constrained();
-            $table->timestamps();
+        Schema::create('oauth_refresh_tokens', function (Blueprint $table) {
+            $table->string('id', 100)->primary();
+            $table->string('access_token_id', 100)->index();
+            $table->boolean('revoked');
+            $table->dateTime('expires_at')->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attribute_image_products');
+        Schema::dropIfExists('oauth_refresh_tokens');
     }
 };
